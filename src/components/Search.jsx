@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 class Search extends React.Component {
   constructor (props) {
@@ -8,16 +8,20 @@ class Search extends React.Component {
     };
   }
 
-  handleChange (event) {
+  handleChange () {
     this.props.handleSearch(e.target.value);
-
+    this.setState({
+      value: e.target.value
+    });
   }
+
+
 
   render () {
     return (
       <div className="search-bar form-inline">
-        <input value={this.state.value} className="form-control" type="text" />
-        <button className="btn hidden-sm-down" onClick = {()=> this.props.handleSearch(this.state.value)}>
+        <input value={this.state.value} onChange={this.handleChange.bind(this)} className="form-control" type="text" />
+        <button className="btn hidden-sm-down" >
           <span className="glyphicon glyphicon-search"></span>
         </button>
       </div>
